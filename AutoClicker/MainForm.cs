@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AutoClicker
@@ -54,14 +47,20 @@ namespace AutoClicker
 
         private void MainForm_MouseEnter(object sender, EventArgs e)
         {
-            Clicker.isInsideAppWindow = true;
-            Debug.WriteLine("Inside");
+            if (ClientRectangle.Contains(PointToClient(new Point(Cursor.Position.X, Cursor.Position.Y))))
+            {
+                Clicker.isInsideAppWindow = true;
+                Debug.WriteLine("Inside");
+            }
         }
 
         private void MainForm_MouseLeave(object sender, EventArgs e)
         {
-            Clicker.isInsideAppWindow = false;
-            Debug.WriteLine("Outside");
+            if (!ClientRectangle.Contains(PointToClient(new Point(Cursor.Position.X, Cursor.Position.Y))))
+            {
+                Clicker.isInsideAppWindow = false;
+                Debug.WriteLine("Outside");
+            }
         }
     }
 }
