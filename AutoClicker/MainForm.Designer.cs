@@ -28,39 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonStart = new System.Windows.Forms.Button();
-            this.buttonStop = new System.Windows.Forms.Button();
+            this.buttonStartStop = new System.Windows.Forms.Button();
             this.labelDelay = new System.Windows.Forms.Label();
             this.numericUpDownDelay = new System.Windows.Forms.NumericUpDown();
             this.labelSeconds = new System.Windows.Forms.Label();
+            this.labelActiveInactive = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDelay)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonStart
+            // buttonStartStop
             // 
-            this.buttonStart.Location = new System.Drawing.Point(12, 82);
-            this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(75, 23);
-            this.buttonStart.TabIndex = 0;
-            this.buttonStart.Text = "Start";
-            this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
-            // 
-            // buttonStop
-            // 
-            this.buttonStop.Enabled = false;
-            this.buttonStop.Location = new System.Drawing.Point(170, 82);
-            this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(75, 23);
-            this.buttonStop.TabIndex = 1;
-            this.buttonStop.Text = "Stop";
-            this.buttonStop.UseVisualStyleBackColor = true;
-            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
+            this.buttonStartStop.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonStartStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonStartStop.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonStartStop.Location = new System.Drawing.Point(172, 12);
+            this.buttonStartStop.Name = "buttonStartStop";
+            this.buttonStartStop.Size = new System.Drawing.Size(75, 50);
+            this.buttonStartStop.TabIndex = 0;
+            this.buttonStartStop.Text = "START";
+            this.buttonStartStop.UseVisualStyleBackColor = false;
+            this.buttonStartStop.Click += new System.EventHandler(this.buttonStartStop_Click);
             // 
             // labelDelay
             // 
             this.labelDelay.AutoSize = true;
-            this.labelDelay.Location = new System.Drawing.Point(57, 26);
+            this.labelDelay.Location = new System.Drawing.Point(12, 12);
             this.labelDelay.Name = "labelDelay";
             this.labelDelay.Size = new System.Drawing.Size(37, 13);
             this.labelDelay.TabIndex = 2;
@@ -69,7 +61,7 @@
             // numericUpDownDelay
             // 
             this.numericUpDownDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownDelay.Location = new System.Drawing.Point(100, 22);
+            this.numericUpDownDelay.Location = new System.Drawing.Point(55, 8);
             this.numericUpDownDelay.Maximum = new decimal(new int[] {
             3600000,
             0,
@@ -92,22 +84,33 @@
             // labelSeconds
             // 
             this.labelSeconds.AutoSize = true;
-            this.labelSeconds.Location = new System.Drawing.Point(162, 26);
+            this.labelSeconds.Location = new System.Drawing.Point(117, 12);
             this.labelSeconds.Name = "labelSeconds";
             this.labelSeconds.Size = new System.Drawing.Size(20, 13);
             this.labelSeconds.TabIndex = 4;
             this.labelSeconds.Text = "ms";
             // 
+            // labelActiveInactive
+            // 
+            this.labelActiveInactive.AutoSize = true;
+            this.labelActiveInactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelActiveInactive.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelActiveInactive.Location = new System.Drawing.Point(35, 51);
+            this.labelActiveInactive.Name = "labelActiveInactive";
+            this.labelActiveInactive.Size = new System.Drawing.Size(76, 16);
+            this.labelActiveInactive.TabIndex = 5;
+            this.labelActiveInactive.Text = "INACTIVE";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(257, 117);
+            this.ClientSize = new System.Drawing.Size(259, 76);
+            this.Controls.Add(this.labelActiveInactive);
             this.Controls.Add(this.labelSeconds);
             this.Controls.Add(this.numericUpDownDelay);
             this.Controls.Add(this.labelDelay);
-            this.Controls.Add(this.buttonStop);
-            this.Controls.Add(this.buttonStart);
+            this.Controls.Add(this.buttonStartStop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
@@ -123,11 +126,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Button buttonStop;
+        private System.Windows.Forms.Button buttonStartStop;
         private System.Windows.Forms.Label labelDelay;
         private System.Windows.Forms.NumericUpDown numericUpDownDelay;
         private System.Windows.Forms.Label labelSeconds;
+        private System.Windows.Forms.Label labelActiveInactive;
     }
 }
 

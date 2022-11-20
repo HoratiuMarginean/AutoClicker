@@ -25,21 +25,17 @@ namespace AutoClicker
         public static bool isStopped = true;
         public static bool isInsideAppWindow = false;
 
-        public static int clickCount = 0;
-
         public static void StartLeftClicking(int delay)
         {
             while (!isStopped)
             {
+                Thread.Sleep(delay);
+
                 if (!isInsideAppWindow)
                 {
                     mouse_event((int)MouseEventFlags.LEFT_DOWN, Cursor.Position.X, Cursor.Position.Y, 0, 0);
                     mouse_event((int)MouseEventFlags.LEFT_UP, Cursor.Position.X, Cursor.Position.Y, 0, 0);
-
-                    Debug.WriteLine("Click Count: " + ++clickCount);
                 }
-
-                Thread.Sleep(delay);
             }
         }
     }

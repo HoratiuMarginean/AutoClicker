@@ -15,24 +15,45 @@ namespace AutoClicker
             InitializeComponent();
         }
 
-        private void buttonStart_Click(object sender, EventArgs e)
+        private void MainForm_MouseEnter(object sender, EventArgs e)
+        {
+            if (ClientRectangle.Contains(PointToClient(new Point(Cursor.Position.X, Cursor.Position.Y))) &&
+                !Clicker.isInsideAppWindow)
+            {
+                Clicker.isInsideAppWindow = true;
+            }
+        }
+
+        private void MainForm_MouseLeave(object sender, EventArgs e)
+        {
+            if (!ClientRectangle.Contains(PointToClient(new Point(Cursor.Position.X, Cursor.Position.Y))) &&
+                Clicker.isInsideAppWindow)
+            {
+                Clicker.isInsideAppWindow = false;
+            }
+        }
+
+        private void buttonStartStop_Click(object sender, EventArgs e)
         {
             if (Clicker.isStopped)
             {
+                buttonStartStop.Enabled = false;
+
                 Clicker.isStopped = false;
 
                 clickerThread = new Thread(() => Clicker.StartLeftClicking((int)numericUpDownDelay.Value));
                 clickerThread.Start();
 
-                buttonStart.Enabled = false;
-                buttonStop.Enabled = true;
-            }
-        }
+                labelActiveInactive.Text = "ACTIVE";
+                labelActiveInactive.ForeColor = Color.DarkGreen;
 
-        private void buttonStop_Click(object sender, EventArgs e)
-        {
-            if (!Clicker.isStopped)
+                buttonStartStop.Text = "STOP";
+                buttonStartStop.Enabled = true;
+            }
+            else
             {
+                buttonStartStop.Enabled = false;
+
                 Clicker.isStopped = true;
 
                 if (clickerThread != null && clickerThread.IsAlive)
@@ -40,26 +61,11 @@ namespace AutoClicker
                     clickerThread.Join();
                 }
 
-                buttonStart.Enabled = true;
-                buttonStop.Enabled = false;
-            }
-        }
+                labelActiveInactive.Text = "INACTIVE";
+                labelActiveInactive.ForeColor = Color.DarkRed;
 
-        private void MainForm_MouseEnter(object sender, EventArgs e)
-        {
-            if (ClientRectangle.Contains(PointToClient(new Point(Cursor.Position.X, Cursor.Position.Y))))
-            {
-                Clicker.isInsideAppWindow = true;
-                Debug.WriteLine("Inside");
-            }
-        }
-
-        private void MainForm_MouseLeave(object sender, EventArgs e)
-        {
-            if (!ClientRectangle.Contains(PointToClient(new Point(Cursor.Position.X, Cursor.Position.Y))))
-            {
-                Clicker.isInsideAppWindow = false;
-                Debug.WriteLine("Outside");
+                buttonStartStop.Text = "START";
+                buttonStartStop.Enabled = true;
             }
         }
     }
